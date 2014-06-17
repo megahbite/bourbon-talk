@@ -1,0 +1,187 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}
+    %title Bourbon and Friends
+    %meta{content: "A lightweight alternative to Bootstrap", name: "description"}
+    %meta{content: "Megan Bowra-Dean", name: "author"}
+    %meta{content: "yes", name: "apple-mobile-web-app-capable"}
+    %meta{content: "black-translucent", name: "apple-mobile-web-app-status-bar-style"}
+    %meta{content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", name: "viewport"}
+    %link{href: "css/reveal.min.css", rel: "stylesheet"}
+    %link#theme{href: "css/theme/beige.css", rel: "stylesheet"}
+    / For syntax highlighting
+    %link{href: "lib/css/zenburn.css", rel: "stylesheet"}
+    %link{href: "css/talk.css", rel: "stylesheet"}
+    / If the query includes 'print-pdf', include the PDF print sheet
+    :javascript
+      if( window.location.search.match( /print-pdf/gi ) ) {
+      	var link = document.createElement( 'link' );
+      	link.rel = 'stylesheet';
+      	link.type = 'text/css';
+      	link.href = 'css/print/pdf.css';
+      	document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    /[if lt IE 9]
+      <script src="lib/js/html5shiv.js"></script>
+  %body
+    .reveal
+      / Any section element inside of this container is displayed as a slide
+      .slides
+        %section
+          %h1 Bourbon and Friends
+          %h2 A lightweight alternative to Bootstrap
+          %p
+            Megan Bowra-Dean
+            %br
+            @megahbite
+        %section
+          %h2 Bootstrap
+          %p Useful framework for putting together a modern responsive website quickly
+          %p
+            %strong BUT
+          %ul
+            %li
+              Heavy - 776KB minified
+            %li
+              Inflexible
+              %ul
+                %li Requires specific DOM element structure for many of its components
+                %li Hard to customize (only recently got an official SASS port with customizable variables)
+
+        %section
+          %h2 Enter Bourbon
+          %img.logo{src: 'img/bourbon-logo.png'}
+          %p
+            %a{href: "http://bourbon.io"} http://bourbon.io
+        %section
+          %p.clearfix Bourbon at its core is a library of useful SASS mixins
+          %p Includes things like helpers that allow you to ignore vendor prefixes in CSS
+          %pre
+            %code.scss{data: {trim: true}}
+              :plain
+                @include box-sizing(border-box);
+          %p Outputs
+          %pre
+            %code.css{data: {trim: true}}
+              :plain
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+
+        %section
+          %h2 Neat
+          %img.logo{src: 'img/neat-logo.svg'}
+          %p
+            %a{href: "http://neat.bourbon.io"} http://neat.bourbon.io
+        %section
+          %ul
+            %li Neat is a separate library built on top of Bourbon
+            %li.fragment Introduces mixins for building a grid framework
+            %li.fragment Doesn't require a specific DOM structure like Bootstrap
+            %li.fragment Responsive out of the box
+        %section
+          %pre
+            %code.scss{data: {trim: true}}
+              :plain
+                .wrapper {
+                  @include outer-container;
+
+                  .sidebar {
+                    @include span-columns(4);
+                  }
+
+                  .content {
+                    @include span-columns(8);
+                    @include omega();
+                  }
+
+                  .footer {
+                    @include span-columns(12);
+                  }
+                }
+        %section
+          %pre
+            %code.xml{data: {trim: true}}
+              :plain
+                <div class="wrapper">
+                  <div class="sidebar">
+                    I'm the sidebar
+                  </div>
+                  <div class="content">
+                    I'm the content
+                  </div>
+                  <div class="footer">
+                    And I'm the footer
+                  </div>
+                </div>
+        %section
+          .wrapper
+            .sidebar
+              I'm the sidebar
+            .content
+              I'm the content
+            .footer
+              And I'm the footer
+        %section
+          %h2 Bitters
+          %img.logo{src: 'img/bitters-logo.svg'}
+          %p
+            %a{href: "http://bitters.bourbon.io"} http://bitters.bourbon.io
+        %section
+          %ul
+            %li The next layer on top of Neat+Bourbon
+            %li.fragment Provides basic scaffolding, typography, form styling, flashes etc.
+            %li.fragment All controlled by SASS variables, designed to be overridden.
+        %section
+          %pre
+            %code.scss{data: {trim: true}}
+              :plain
+                h1, h2, h3, h4, h5, h6 {
+                  font-family: $header-font-family;
+                  line-height: $header-line-height;
+                  margin: 0;
+                  text-rendering: optimizeLegibility;
+                }
+
+                h1 {
+                  font-size: $base-font-size * 2.25; // 16 * 2.25 = 36px
+                }
+
+                h2 {
+                  font-size: $base-font-size * 2; // 16 * 2 = 32px
+                }
+        %section
+          %h2 Refills
+          %img.logo{src: 'img/refills-logo.svg'}
+          %p
+            %a{href: "http://refills.bourbon.io"} http://refills.bourbon.io
+
+    %script{src: "lib/js/head.min.js"}
+    %script{src: "js/reveal.min.js"}
+    :javascript
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      	controls: true,
+      	progress: true,
+      	history: true,
+      	center: true,
+
+      	theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      	transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+      	// Parallax scrolling
+      	// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+      	// parallaxBackgroundSize: '2100px 900px',
+
+      	// Optional libraries used to extend on reveal.js
+      	dependencies: [
+      		{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      		{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      		{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      		{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      		{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+      	]
+      });

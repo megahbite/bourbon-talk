@@ -1,0 +1,41 @@
+@import "bourbon/bourbon";
+
+// .demo {
+//   @import "base/base";
+// }
+
+@import "neat/neat";
+
+
+
+
+section {
+  .wrapper {
+    @include outer-container;
+    background: white;
+    border: 1px solid black;
+    color: black;
+    .sidebar {
+      @include span-columns(4);
+      border: 1px solid black;
+    }
+
+    .content {
+      @include span-columns(8);
+      @include omega();
+      border: 1px solid black;
+    }
+
+    .footer {
+      @include span-columns(12);
+      border: 1px solid black;
+    }
+  }
+
+  img.logo {
+    border: none;
+    background: none;
+    box-shadow: none;
+    max-height: 70px;
+  }
+}
