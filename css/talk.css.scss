@@ -39,3 +39,12 @@ section {
     max-height: 70px;
   }
 }
+
+.blink {
+  @include animation(blink 1.5s step-end infinite);
+}
+
+@include keyframes(blink) {
+  0% { visibility: visible; }
+  50% { visibility: hidden; }
+}

@@ -44,3 +44,27 @@ section img.logo {
   background: none;
   box-shadow: none;
   max-height: 70px; }
+
+.blink {
+  -webkit-animation: blink 1.5s step-end infinite;
+  -moz-animation: blink 1.5s step-end infinite;
+  animation: blink 1.5s step-end infinite; }
+
+@-webkit-keyframes blink {
+  0% {
+    visibility: visible; }
+
+  50% {
+    visibility: hidden; } }
+@-moz-keyframes blink {
+  0% {
+    visibility: visible; }
+
+  50% {
+    visibility: hidden; } }
+@keyframes blink {
+  0% {
+    visibility: visible; }
+
+  50% {
+    visibility: hidden; } }
