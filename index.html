@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<title>Bourbon and Friends</title>
+<meta content='A lightweight alternative to Bootstrap' name='description'>
+<meta content='Megan Bowra-Dean' name='author'>
+<meta content='yes' name='apple-mobile-web-app-capable'>
+<meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
+<link href='css/reveal.min.css' rel='stylesheet'>
+<link href='css/theme/beige.css' id='theme' rel='stylesheet'>
+<!-- For syntax highlighting -->
+<link href='lib/css/zenburn.css' rel='stylesheet'>
+<link href='css/talk.css' rel='stylesheet'>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+  if( window.location.search.match( /print-pdf/gi ) ) {
+  	var link = document.createElement( 'link' );
+  	link.rel = 'stylesheet';
+  	link.type = 'text/css';
+  	link.href = 'css/print/pdf.css';
+  	document.getElementsByTagName( 'head' )[0].appendChild( link );
+  }
+</script>
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class='reveal'>
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class='slides'>
+<section>
+<h1>Bourbon and Friends</h1>
+<h2>A lightweight alternative to Bootstrap</h2>
+<p>
+Megan Bowra-Dean
+<br>
+@megahbite
+</p>
+</section>
+<section>
+<h2>Bootstrap</h2>
+<p>Useful framework for putting together a modern responsive website quickly</p>
+<p>
+<strong>BUT</strong>
+</p>
+<ul>
+<li>
+Heavy - 776KB minified
+</li>
+<li>
+Inflexible
+<ul>
+<li>Requires specific DOM element structure for many of its components</li>
+<li>Hard to customize (only recently got an official SASS port with customizable variables)</li>
+</ul>
+</li>
+</ul>
+</section>
+<section>
+<h2>Enter Bourbon</h2>
+<img class='logo' src='img/bourbon-logo.png'>
+<p>
+<a href='http://bourbon.io'>http://bourbon.io</a>
+</p>
+</section>
+<section>
+<p class='clearfix'>Bourbon at its core is a library of useful SASS mixins</p>
+<p>Includes things like helpers that allow you to ignore vendor prefixes in CSS</p>
+<pre><code class='scss' data-trim>@include box-sizing(border-box);</code></pre>
+<p>Outputs</p>
+<pre><code class='css' data-trim>-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;</code></pre>
+</section>
+<section>
+<h2>Neat</h2>
+<img class='logo' src='img/neat-logo.svg'>
+<p>
+<a href='http://neat.bourbon.io'>http://neat.bourbon.io</a>
+</p>
+</section>
+<section>
+<ul>
+<li>Neat is a separate library built on top of Bourbon</li>
+<li class='fragment'>Introduces mixins for building a grid framework</li>
+<li class='fragment'>Doesn't require a specific DOM structure like Bootstrap</li>
+<li class='fragment'>Responsive out of the box</li>
+</ul>
+</section>
+<section>
+<pre><code class='scss' data-trim>.wrapper {
+  @include outer-container;
+
+  .sidebar {
+    @include span-columns(4);
+  }
+
+  .content {
+    @include span-columns(8);
+    @include omega();
+  }
+
+  .footer {
+    @include span-columns(12);
+  }
+}</code></pre>
+</section>
+<section>
+<pre><code class='xml' data-trim><div class="wrapper">
+  <div class="sidebar">
+    I'm the sidebar
+  </div>
+  <div class="content">
+    I'm the content
+  </div>
+  <div class="footer">
+    And I'm the footer
+  </div>
+</div></code></pre>
+</section>
+<section>
+<div class='wrapper'>
+<div class='sidebar'>
+I'm the sidebar
+</div>
+<div class='content'>
+I'm the content
+</div>
+<div class='footer'>
+And I'm the footer
+</div>
+</div>
+</section>
+<section>
+<h2>Bitters</h2>
+<img class='logo' src='img/bitters-logo.svg'>
+<p>
+<a href='http://bitters.bourbon.io'>http://bitters.bourbon.io</a>
+</p>
+</section>
+<section>
+<ul>
+<li>The next layer on top of Neat+Bourbon</li>
+<li class='fragment'>Provides basic scaffolding, typography, form styling, flashes etc.</li>
+<li class='fragment'>All controlled by SASS variables, designed to be overridden.</li>
+</ul>
+</section>
+<section>
+<pre><code class='scss' data-trim>h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font-family;
+  line-height: $header-line-height;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-size: $base-font-size * 2.25; // 16 * 2.25 = 36px
+}
+
+h2 {
+  font-size: $base-font-size * 2; // 16 * 2 = 32px
+}</code></pre>
+</section>
+<section>
+<h2>Refills</h2>
+<img class='logo' src='img/refills-logo.svg'>
+<p>
+<a href='http://refills.bourbon.io'>http://refills.bourbon.io</a>
+</p>
+</section>
+</div>
+</div>
+<script src='lib/js/head.min.js'></script>
+<script src='js/reveal.min.js'></script>
+<script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+  	controls: true,
+  	progress: true,
+  	history: true,
+  	center: true,
+  
+  	theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+  	transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+  
+  	// Parallax scrolling
+  	// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+  	// parallaxBackgroundSize: '2100px 900px',
+  
+  	// Optional libraries used to extend on reveal.js
+  	dependencies: [
+  		{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  		{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  		{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+  		{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+  		{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  	]
+  });
+</script>
+</body>
+</html>
